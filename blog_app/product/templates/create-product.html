@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{% if product %}Edit{% else %}Add{% endif %} Product{% endblock %}
+{% block content %}
+<h1>{% if product %}Edit{% else %}Add{% endif %} Post</h1>
+<form method="post" class="row g-3">
+    {% csrf_token %}
+    <div class="col-md-12">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" value="{{product.title|default:'' }}">
+    </div>
+    <div class="col-md-12">
+        <label for="content" class="form-label">Content</label>
+        <input type="text" name="content" class="form-control" value="{{product.content|default:'' }}">
+    </div>
+    <div class="col-md-12">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" name="author" class="form-control" value="{{product.author|default:'' }}">
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">Save Post</button>
+        <a href="{% url 'product-list' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+{% endblock %}
